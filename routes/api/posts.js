@@ -7,6 +7,30 @@ const Post = require('../../models/Post');
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
 
+
+/**
+ * @route   POST api/items
+ * @desc    Create An Item
+ * @access  Private
+ */
+
+router.post('/test', async (req, res) => {
+  const newPost = new Post({
+    text: req.body.text,
+  });
+
+
+  try {
+    const post = await newPost.save();
+    if (!post) throw Error('Something went wrong saving the item');
+
+    res.status(200).json(post);
+  } catch (e) {
+    res.status(400).json({ msg: e.message });
+  }
+});
+
+
 // @route    POST api/posts
 // @desc     Create a post
 // @access   Private
