@@ -1,6 +1,25 @@
 import axios from 'axios';
 import { setAlert } from './alert';
-import { GET_CONTACTS, CONTACT_ERROR, ADD_CONTACT, DELETE_CONTACT, CONTACTS_LOADING } from './types';
+import { GET_CONTACTS, CONTACT_ERROR, ADD_CONTACT, DELETE_CONTACT } from './types';
+
+//get contacts
+
+export const getContacts = () => async dispatch => {
+  try {
+    const res = await axios.get('/api/contacts');
+
+    dispatch({
+      type: GET_CONTACTS,
+      payload: res.data
+    });
+  } catch (err) {
+    dispatch({
+      type: CONTACT_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
+  }
+};
+
 
 // Add post
 export const addContact = formData => async dispatch => {

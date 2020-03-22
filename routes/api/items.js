@@ -12,10 +12,10 @@ const router = express.Router();
  */
 
 router.get('/', async (req, res) => {
+  console.log('fuck fuck fuck');
   try {
     const items = await Item.find();
     if (!items) throw Error('No items');
-
     res.status(200).json(items);
   } catch (e) {
     res.status(400).json({ msg: e.message });
@@ -30,9 +30,14 @@ router.get('/', async (req, res) => {
 
 router.post('/', async (req, res) => {
   const newItem = new Item({
-    name: req.body.name
+    first: req.body.first,
+    last: req.body.last,
+    email: req.body.email,
+    company: req.body.company,
+    address: req.body.address,
+    referal: req.body.referal,
   });
-
+  console.log('fuck2');
   try {
     const item = await newItem.save();
     if (!item) throw Error('Something went wrong saving the item');
@@ -43,26 +48,6 @@ router.post('/', async (req, res) => {
   }
 });
 
-/**
- * @route   POST api/items
- * @desc    Create An Item on the frontend
- * @access  Private
- */
-
-router.post('/front', async (req, res) => {
-  const newItem = new Item({
-    name: req.body.name
-  });
-
-  try {
-    const item = await newItem.save();
-    if (!item) throw Error('Something went wrong saving the item');
-
-    res.status(200).json(item);
-  } catch (e) {
-    res.status(400).json({ msg: e.message });
-  }
-});
 
 /**
  * @route   DELETE api/items/:id

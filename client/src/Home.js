@@ -18,6 +18,8 @@ import stripe2 from './contact-shepe-white.png';
 import { connect } from 'react-redux';
 import { addItem } from './actions/item';
 import { addContact } from './actions/contact';
+import './App.css';
+import logo from './logo.png';
 
 
 
@@ -28,292 +30,435 @@ const Home = ({addItem, addContact}) => {
   const [first, setFirst] = useState('');
   const [last, setLast] = useState('');
   const [email, setEmail] = useState('');
-  const [message, setMessage] = useState('');
+  const [company, setCompany] = useState('');
+  const [address, setAddress] = useState('');
+  const [referal, setReferal] = useState('');
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
   const handleChangeName = (e) => setName(e.target.value);
   const handleFirst = (e) => setFirst(e.target.value);
   const handleLast = (e) => setLast(e.target.value);
   const handleEmail = (e) => setEmail(e.target.value);
-  const handleMessage = (e) => setMessage(e.target.value);
+  const handleCompany = (e) => setCompany(e.target.value);
+  const handleAddress = (e) => setAddress(e.target.value);
+  const handleReferal = (e) => setReferal(e.target.value);
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
     const newItem = {
-      name
+      first: first,
+      last: last,
+      email: email,
+      company: company,
+      address: address,
+      referal: referal
     };
 
     // Add item via addItem action
     addItem(newItem);
     console.log('success');
     // Close modal
-    handleShow();
+    handleClose();
   };
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const newContact = {
-      first: first,
-      last: last,
-      email: email,
-      message: message
-    };
-    // Add item via addItem action
-    addContact(newContact);
-    console.log('success');
-    // Close modal
-  };
+
   return (
     <div>
-      <Jumbotron className="header--bg">
+      <div className="header--bg">
         <div className="row">
             <div className="col-md-12">
                 <div className="header-text">
-                    <h1>Creative Title Goes Here</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor <br></br> incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis <br></br> nostrud exercitation</p>
-                    <button>Read More</button>
-                    <button>Explore</button>
-                </div>
-            </div>
-        </div>
-      </Jumbotron>
-
-      <div className="container">
-        <section className="about">
-        <div className="row">
-          <div className="col-md-12 equipment-title">
-            <h1>About Us</h1>
-          </div>
-          <div className="col-md-12 equipment-title">
-            <p>Imperial Traffic Solutions is a locally owned and operated, turnkey Traffic Control company that specializes in the rentals of Intelligent Work Zone Safety Equipment, including Portable Changeable Message Signs, Arrow Boards, Radar Speed Trailers and Truck-Mounted Attenuators; based in Austin serving Central Texas, San Antonio and the surrounding areas.</p>
-            <br></br>
-    <p>Whether you need a simple single lane closure or a fully engineered traffic control plan, Imperial Traffic Solutions can handle any and all of your Traffic Control needs.</p>
-    <br></br>
-
-    <p>With our vast inventory of the most current electronic sign technology and traffic control devices, we are ready for any size rental request or emergency situation.</p>
-    <br></br>
-
-  <p>  Our mission is to provide the absolute highest quality Traffic Control services and Intelligent Work Zone Safety Equipment, with the fastest response time, all at the most competitive price.</p>
-          <br></br>
-  <p>  Contact us today for any of your Traffic Control or Intelligent Work Zone Safety Equipment rental needs.</p>
-          </div>
-        </div>
-        </section>
-      </div>
-
-      <hr></hr>
-
-      <div className="container">
-        <div className="row">
-          <div className="col-md-12 equipment-title">
-            <h1>Services We Offer</h1>
-          </div>
-        </div>
-      </div>
-
-      <div className="container">
-        <section className="price">
-          <div className="page-section page-section--small text-center">
-            <div className="price__panel-wrapper">
-              <div className="row gutters-50">
-                <div className="col-md-4">
-                  <div className="panel text-center">
-                    <div className="panel-heading">
-                      <h4 className="price__title">SILVER</h4>
-                      <h1 className="price__ammount">&#36;<span className="price__ammount--number">159</span> &#47;Year</h1>
-                    </div>
-                    <div className="panel-body">
-                      <img src={e1} alt=""></img>
-                      <p>Up To 5 user</p>
-                      <p>Max. 100 iteam/month</p>
-                      <p>Unlimited queries</p>
-                      <p>Full statistics</p>
-                    </div>
-                    <div>
-                      <a className="panel__button" href="#">GET THIS PLAN</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel text-center">
-                    <div className="panel-heading">
-                      <h4 className="price__title">GOLD</h4>
-                      <h1 className="price__ammount">&#36; <span className="price__ammount--number">249</span> &#47;Year</h1>
-                    </div>
-                    <div className="panel-body">
-                      <img src={e2} alt=""></img>
-                      <p>Up To 10 user</p>
-                      <p>Max. 200 iteam/month</p>
-                      <p>Unlimited queries</p>
-                      <p>Full statistics</p>
-                    </div>
-                    <div>
-                      <a className="panel__button" href="#">GET THIS PLAN</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-4">
-                  <div className="panel text-center">
-                    <div className="panel-heading">
-                      <h4 className="price__title">PLATINUM</h4>
-                      <h1 className="price__ammount">&#36; <span className="price__ammount--number">459</span> &#47;Year</h1>
-                    </div>
-                    <div className="panel-body">
-                      <img src={e1} alt=""></img>
-                      <p>Up To 5 user</p>
-                      <p>Unlimited iteam</p>
-                      <p>Unlimited queries</p>
-                      <p>Full statistics</p>
-                    </div>
-                    <div>
-                      <a className="panel__button" href="#">GET THIS PLAN</a>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-
-
-
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-
-        <Modal.Body>
-          <form onSubmit={handleOnSubmit}>
-          <label>Item</label>
-              <div className="item">
-                  <input type="text" name="name" placeholder="Item" onChange={handleChangeName} id="item"></input>
-              </div>
-              <button>submit</button>
-          </form>
-        </Modal.Body>
-
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-
-
-
-      <div className="contact--bg">
-        <div className="row">
-            <div className="col-md-12">
-                <div className="header-text">
-                    <h1>Request A Quote</h1>
+                    <h1>IMPERIAL TRAFFIC SOLUTIONS</h1>
+                    <p>THE CENTRAL TEXAS AUTHORITY IN TRAFFIC CONTROL AND INTELLIGENT WORK ZONE SAFETY EQUIPMENT</p>
                     <Button variant="primary" onClick={handleShow}>
-                      Launch demo modal
+                      Request a quote
                     </Button>
+                    <Modal show={show} onHide={handleClose}>
+                      <Modal.Header closeButton>
+                        <Modal.Title>Quote Form</Modal.Title>
+                      </Modal.Header>
+
+                      <Modal.Body>
+                        <form onSubmit={handleOnSubmit}>
+                          <input type="text" name="first" className="form-control input_box" placeholder="First Name *" onChange={handleFirst}></input>
+                          <input type="text"name="last" className="form-control input_box" placeholder="Last Name *" onChange={handleLast}></input>
+                          <input type="text" name="email" className="form-control input_box" placeholder="Your Email *" onChange={handleEmail}></input>
+                          <input type="text" name="company" className="form-control input_box" placeholder="Your Company *" onChange={handleCompany}></input>
+                          <input type="text" name="address" className="form-control input_box" placeholder="Your Delivery Address *" onChange={handleAddress}></input>
+                          <input type="text" name="referal" className="form-control input_box" placeholder="How Did You Hear About Us *" onChange={handleReferal}></input>
+                        </form>
+
+
+                        {/*
+
+                          <form onSubmit={handleSubmit} className="form-inline contact_box">
+                              <input type="text" name="first" className="form-control input_box" placeholder="First Name *" onChange={handleFirst}></input>
+                              <input type="text"name="last" className="form-control input_box" placeholder="Last Name *" onChange={handleLast}></input>
+                              <input type="text" name="email" className="form-control input_box" placeholder="Your Email *" onChange={handleEmail}></input>
+                              <input type="text" className="form-control input_box" placeholder="Subject"></input>
+                              <textarea className="form-control input_box" name="message" placeholder="Message" onChange={handleMessage}></textarea>
+                              <button type="submit" className="btn btn-default">Send Message</button>
+                          </form>
+
+                          */}
+                      </Modal.Body>
+
+                      <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                          Close
+                        </Button>
+                        <Button variant="primary" onClick={handleOnSubmit}>
+                          Save Changes
+                        </Button>
+                      </Modal.Footer>
+                    </Modal>
                 </div>
             </div>
         </div>
       </div>
 
-      <section className="contact">
+
+
+      <section className="about_us_area row">
           <div className="container">
-              <div className="row">
-                  <div className="col-md-4 col-sm-12">
-                      <div className="contact-text">
-                          <h2>Contact US!</h2>
-                          <p>Meet Our Awesome Team. Lorem Ipsum dolor sit amet Hola amigos como estas!</p>
+              <div className="row about_row">
+                  <div className="who_we_area col-md-7 col-sm-6">
+                      <div className="subtittle">
+                          <h2>WHO WE ARE</h2>
                       </div>
+                      <p>IMPERIAL TRAFFIC SOLUTIONS IS THE CENTRAL TEXAS AUTHORITY IN TRAFFIC CONTROL AND INTELLIGENT WORK ZONE SAFETY EQUIPMENT. WE RENT AND SELL THE LATEST IN ELECTRONIC MESSAGE SIGN TECHNOLOGY & TRAFFIC CONTROL EQUIPMENT.</p>
+                      <a href="/contact" className="button_all">Contact Now</a>
                   </div>
-                  <div className="col-md-8 col-sm-12">
-                      <div className="contact-form">
-                        <form onSubmit={handleSubmit}>
-                            <div className="first">
-                                <input type="text" name="first" placeholder="First Name" onChange={handleFirst}></input>
+                  <div className="col-md-5 col-sm-6 about_client">
+                      <img src="images/about_client.jpg" alt=""></img>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section className="professional_builder row">
+          <div className="container">
+             <div className="row builder_all">
+                  <div className="col-md-4 col-sm-6 builder">
+                      <i className="fa fa-building" aria-hidden="true"></i>
+                      <h4>We Deliver Quality</h4>
+                      <p>We supply only the top brands in safety equipment</p>
+                  </div>
+                  <div className="col-md-4 col-sm-6 builder">
+                      <i className="fa fa-clock-o" aria-hidden="true"></i>
+                      <h4>Always On Time</h4>
+                      <p>Offering the fastest response time and delivery</p>
+                  </div>
+                  <div className="col-md-4 col-sm-6 builder">
+                      <i className="fa fa-thumbs-up" aria-hidden="true"></i>
+                      <h4>We Are Pasionate</h4>
+                      <p>In emergency situations, we go the extra mile</p>
+                  </div>
+             </div>
+          </div>
+      </section>
+
+
+
+      <section className="what_we_area row">
+          <div className="container">
+              <div className="tittle wow fadeInUp">
+                  <h2>WHAT WE OFFER</h2>
+              </div>
+              <div className="row construction_iner">
+
+
+
+{/*
+
+  <Container>
+    <Row>
+      <Col xs={12} md={8}>
+        xs=12 md=8
+      </Col>
+      <Col xs={6} md={4}>
+        xs=6 md=4
+      </Col>
+    </Row>
+  </Container>
+
+  <Card style={{ width: '18rem' }}>
+    <Card.Img variant="top" src="holder.js/100px180" />
+    <Card.Body>
+      <Card.Title>Card Title</Card.Title>
+      <Card.Text>
+        Some quick example text to build on the card title and make up the bulk of
+        the card's content.
+      </Card.Text>
+      <Button variant="primary">Go somewhere</Button>
+    </Card.Body>
+  </Card>
+
+  */}
+
+
+              <Container>
+                <section className="price">
+                  <div className="page-section page-section--small text-center">
+                    <div className="price__panel-wrapper">
+                      <Row>
+                      <Col md={4}>
+                        <Card className="panel text-center">
+                          <div className="panel-heading">
+                            <h4 className="price__title">SILVER</h4>
+                            <h1 className="price__ammount">&#36;<span className="price__ammount--number">159</span> &#47;Year</h1>
+                          </div>
+                          <div className="panel-body">
+                            <img src={e1} alt=""></img>
+                            <p>SOLAR POWERED MESSAGE BOARDS</p>
+                            <hr></hr>
+                            <p>large or small letters</p>
+                            <p>Perfect for a wide array of apps</p>
+                          </div>
+                          <div>
+                            <a className="panel__button" href="#" onClick={handleShow} >GET THIS PLAN</a>
+                          </div>
+                        </Card>
+                      </Col>
+                      <Col md={4}>
+                        <Card className="panel text-center">
+                            <div className="panel-heading">
+                              <h4 className="price__title">GOLD</h4>
+                              <h1 className="price__ammount">&#36; <span className="price__ammount--number">249</span> &#47;Year</h1>
                             </div>
-                            <div className="last">
-                                <input type="text" name="last" placeholder="Last Name" onChange={handleLast}></input>
+                            <div className="panel-body">
+                              <img src={e2} alt=""></img>
+                              <p>SOLAR POWERED ARROW BOARDS</p>
+                              <hr></hr>
+                              <p>Feature W|ECO green technology</p>
+                              <p>Highest standards of quality and performance</p>
                             </div>
-                            <div className="email">
-                                <input type="email" name="email" placeholder="Email Address" onChange={handleEmail}></input>
+                            <div>
+                              <a className="panel__button" href="#" onClick={handleShow} >GET THIS PLAN</a>
                             </div>
-                            <div className="message">
-                                <textarea placeholder="Your Message" onChange={handleMessage}></textarea>
+                          </Card>
+                        </Col>
+                        <Col md={4}>
+                          <Card className="panel text-center">
+                            <div className="panel-heading">
+                              <h4 className="price__title">PLATINUM</h4>
+                              <h1 className="price__ammount">&#36; <span className="price__ammount--number">459</span> &#47;Year</h1>
                             </div>
-                            <div className="checkbox-submit">
-                                <div className="checkbox">
-                                    <label><input type="checkbox" name="" checked></input> Allow Newsletter</label>
-                                </div>
-                                <div className="submit">
-                                    <input type="submit" value="SEND"></input>
-                                </div>
+                            <div className="panel-body">
+                              <img src={e3} alt=""></img>
+                              <p>RADAR SPEED TRAILERS</p>
+                              <hr></hr>
+                              <p>Largest portable speed sign available</p>
+                              <p>26-inch characters</p>
                             </div>
-                        </form>
+                            <div>
+                              <a className="panel__button" href="#" onClick={handleShow} >GET THIS PLAN</a>
+                            </div>
+                          </Card>
+                        </Col>
+                      </Row>
+                    </div>
+                  </div>
+                </section>
+              </Container>
+
+              </div>
+          </div>
+      </section>
+      <section className="our_achievments_area" data-stellar-background-ratio="0.3">
+          <div className="container">
+              <div className="tittle wow fadeInUp">
+                  <h2>Our Achievments</h2>
+              </div>
+              <div className="achievments_row row">
+                  <div className="col-md-3 col-sm-6 p0 completed">
+                      <i className="fa fa-connectdevelop" aria-hidden="true"></i>
+                      <span className="counter">800</span>
+                      <h6>PROJECT COMPLETED</h6>
+                  </div>
+                  <div className="col-md-3 col-sm-6 p0 completed">
+                      <i className="fa fa-home" aria-hidden="true"></i>
+                      <span className="counter">230</span>
+                      <h6>CLOSURES</h6>
+                  </div>
+                  <div className="col-md-3 col-sm-6 p0 completed">
+                      <i className="fa fa-child" aria-hidden="true"></i>
+                      <span className="counter">1390</span>
+                      <h6>WORKERS EMPLOYED</h6>
+                  </div>
+                  <div className="col-md-3 col-sm-6 p0 completed">
+                      <i className="fa fa-trophy" aria-hidden="true"></i>
+                      <span className="counter">125</span>
+                      <h6>AWARDS WON</h6>
+                  </div>
+              </div>
+          </div>
+      </section>
+      <section className="our_feature_area">
+          <div className="container">
+              <div className="tittle wow fadeInUp">
+                  <h2>Our Features</h2>
+              </div>
+              <div className="feature_row row">
+                  <div className="col-md-6 feature_img">
+                      <img src="images/feature-man.jpg" alt=""></img>
+                  </div>
+                  <div className="col-md-6 feature_content">
+                      <div className="subtittle">
+                          <h2>WHY CHOOSE US</h2>
+                      </div>
+                      <div className="media">
+                          <div className="media-left">
+                              <a href="#">
+                                  <i className="fa fa-wrench" aria-hidden="true"></i>
+                              </a>
+                          </div>
+                          <div className="media-body">
+                              <a href="#">20+ YEARS OF EXPERIENCE</a>
+                              <p>Verifed history of success for over 20 years</p>
+                          </div>
+                      </div>
+                      <div className="media">
+                          <div className="media-left">
+                              <a href="#">
+                                  <i className="fa fa-rocket" aria-hidden="true"></i>
+                              </a>
+                          </div>
+                          <div className="media-body">
+                              <a href="#">QUALIFIED EXPERTS</a>
+                              <p>We have everything you need to get the job done</p>
+
+                          </div>
+                      </div>
+                      <div className="media">
+                          <div className="media-left">
+                              <a href="#">
+                                  <i className="fa fa-users" aria-hidden="true"></i>
+                              </a>
+                          </div>
+                          <div className="media-body">
+                              <a href="#">Best Customer Services</a>
+                              <p>Our employees will not stop until the job is done</p>
+                          </div>
                       </div>
                   </div>
               </div>
           </div>
       </section>
 
-      <footer className="footer">
+
+      <section className="featured_works row" data-stellar-background-ratio="0.3">
+          <div className="featured_gallery">
+  {/* Stack the columns on mobile by making one full-width and the other half-width */}
+  <Row>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-1.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-2.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-3.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-4.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-5.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-6.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-7.jpg" alt=""></img>
+    </Col>
+    <Col md={3} sm={4} xs={6} >
+      <img src="images/gallery/gl-8.jpg" alt=""></img>
+    </Col>
+  </Row>
+
+  {/*
+
+
+    <Row>
+      <Col xs={6} md={4}>
+        xs=6 md=4
+      </Col>
+      <Col xs={6} md={4}>
+        xs=6 md=4
+      </Col>
+      <Col xs={6} md={4}>
+        xs=6 md=4
+      </Col>
+      <Col xs={6} md={4}>
+        xs=6 md=4
+      </Col>
+    </Row>
+
+
+
+    Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
+
+
+
+              {/*
+
+                <div className="col-md-3 col-sm-4 col-xs-6 p0">
+                    <img src="images/gallery/gl-1.jpg" alt=""></img>
+                </div>
+                <div className="col-md-3 col-sm-4 col-xs-6 p0">
+                    <img src="images/gallery/gl-2.jpg" alt=""></img>
+                </div>
+                <div className="col-md-3 col-sm-4 col-xs-6 p0">
+                    <img src="images/gallery/gl-3.jpg" alt=""></img>
+                </div>
+                      <div className="col-md-3 col-sm-4 col-xs-6 p0">
+                        <img src="images/gallery/gl-4.jpg" alt=""></img>
+                    </div>
+                    <div className="col-md-3 col-sm-4 col-xs-6  p0">
+                        <img src="images/gallery/gl-5.jpg" alt=""></img>
+                    </div>
+                    <div className="col-md-3 col-sm-4 col-xs-6  p0">
+                        <img src="images/gallery/gl-6.jpg" alt=""></img>
+                    </div>
+                    <div className="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
+                        <img src="images/gallery/gl-7.jpg" alt=""></img>
+                    </div>
+                    <div className="col-md-3 col-sm-4 col-xs-6 gallery_iner p0">
+                        <img src="images/gallery/gl-8.jpg" alt=""></img>
+                    </div>
+                     */}
+
+          </div>
+      </section>
+      <section className="our_partners_area">
           <div className="container">
-              <div className="row">
-                  <div className="col-md-4 col-sm-12">
-                      <div className="footer-icon">
-                          <h2>Kulo</h2>
-                          <p><a href="#"><i aria-hidden="true" className="fab fa-facebook-square"></i></a><a href="#"><i aria-hidden="true" className="fab fa-linkedin"></i></a><a href="#"><i aria-hidden="true" className="fab fa-dribbble"></i></a><a href="#"><i aria-hidden="true" className="fab fa-behance"></i></a><a href="#"><i aria-hidden="true" className="fab fa-google-plus"></i></a></p>
-                          <h5>&copy; All Right Reserved. dart theme 2017</h5>
+              <div className="tittle wow fadeInUp">
+                  <h2>Our Partners</h2>
+              </div>
+              <div className="partners">
+                  <div className=""><img src="images/s2.png" alt=""></img></div>
+                  <div className=""><img src="images/s3.png" alt=""></img></div>
+                  <div className=""><img src="images/s1.png" alt=""></img></div>
+                  <div className=""><img src="images/s5.jpg" alt=""></img></div>
+              </div>
+          </div>
+          <div className="book_now_aera">
+              <div className="container">
+                  <div className="row book_now">
+                      <div className="col-md-10 booking_text">
+                          <h4>Let us help you keep your work zone safe</h4>
                       </div>
-                  </div>
-                  <div className="col-md-8">
-                      <div className="footer-text">
-                          <div className="row">
-                              <div className="col-md-3 col-sm-6 col-xs-6">
-                                  <div className="footer-text-single">
-                                      <h3>About Us</h3>
-                                      <p><a href="#">Our Team</a></p>
-                                      <p><a href="#">Company</a></p>
-                                      <p><a href="#">Jobs</a></p>
-                                      <p><a href="#">Newsletter</a></p>
-                                  </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6 col-xs-6">
-                                  <div className="footer-text-single">
-                                      <h3>Help Center</h3>
-                                      <p><a href="#">Documentations</a></p>
-                                      <p><a href="#">Tutorials</a></p>
-                                      <p><a href="#">Term Of Use</a></p>
-                                      <p><a href="#">Privecy Policy</a></p>
-                                  </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6 col-xs-6">
-                                  <div className="footer-text-single">
-                                      <h3>Tools</h3>
-                                      <p><a href="#">Create Account</a></p>
-                                      <p><a href="#">Log In</a></p>
-                                      <p><a href="#">Services</a></p>
-                                      <p><a href="#">Sitemap</a></p>
-                                  </div>
-                              </div>
-                              <div className="col-md-3 col-sm-6 col-xs-6">
-                                  <div className="footer-text-single">
-                                      <h3>Get In Touch</h3>
-                                      <p><a href="#">Contact Us</a></p>
-                                      <p><a href="#">Request A Demo</a></p>
-                                      <p><a href="#">+12 323 323 323</a></p>
-                                      <p><a href="#">support@gmail.com</a></p>
-                                  </div>
-                              </div>
-                          </div>
+                      <div className="col-md-2 p0 book_bottun">
+                          <Button variant="dark" className="button_all" onClick={handleShow}>
+                            Request a quote
+                          </Button>
                       </div>
                   </div>
               </div>
           </div>
-      </footer>
+      </section>
     </div>
 
 

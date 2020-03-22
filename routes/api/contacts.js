@@ -35,6 +35,7 @@ router.post('/', async (req, res) => {
     email: req.body.email,
     message: req.body.message,
   });
+  console.log('fuck');
 
   try {
     const contact = await newItem.save();
